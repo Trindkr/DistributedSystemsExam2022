@@ -1,14 +1,11 @@
 package main
 
 import (
-	"bufio"
 	"context"
 	"flag"
 	"fmt"
 	"log"
 	"os"
-	"strconv"
-	"strings"
 	"time"
 
 	gRPC "github.com/Trindkr/DistributedSystemsExam2022/proto"
@@ -16,7 +13,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-//Same principle as in client. Flags allows for user specific arguments/values
+//Same principle as in Server. Flags allows for user specific arguments/values
 var clientsName = flag.String("name", "default", "Senders name")
 var tcpServer = flag.String("server", "5400", "Tcp server")
 
@@ -36,12 +33,11 @@ func main() {
 	setLog()
 
 	fmt.Println("--- join Server ---")
-	ServerConn = make(map[gRPC.MessageServiceClient]*grpc.ClientConn) //make map of server connections
-	joinServer()                                                      // Method call
+	ServerConn = make(map[gRPC.MessageServiceClient]*grpc.ClientConn) //Make map of server connections
+	joinServer()                                                      //Method call
 	defer closeAll()                                                  //when main method exits, close all the connections to the servers.
 
-	//start the biding
-	parseInput()
+	
 }
 
 func joinServer() {
@@ -70,53 +66,53 @@ func joinServer() {
 	ctx = context.Background()
 }
 
-func parseInput() {
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Type the amount you wish to increment with here. Type 0 to get the current value")
-	fmt.Println("--------------------")
+// func parseInput() {
+// 	reader := bufio.NewReader(os.Stdin)
+// 	fmt.Println("Type the amount you wish to increment with here. Type 0 to get the current value")
+// 	fmt.Println("--------------------")
 
-	//Infinite loop to listen for clients input.
-	for {
-		fmt.Print("-> ")
+// 	//Infinite loop to listen for clients input.
+// 	for {
+// 		fmt.Print("-> ")
 
-		in, err := reader.ReadString('\n') //Read input into var in
-		if err != nil {
-			log.Fatal(err)
-		}
-		in = strings.TrimSpace(in) //Trim input
-		incrementVal(in)
-	}
-}
+// 		in, err := reader.ReadString('\n') //Read input into var in
+// 		if err != nil {
+// 			log.Fatal(err)
+// 		}
+// 		in = strings.TrimSpace(in) //Trim input
+// 		incrementVal(in)
+// 	}
+// }
 
-func incrementVal(in string) {
+// func incrementVal(in string) {
 
-	val, err := strconv.ParseInt(in, 10, 32) //Convert string to int64, return error if the int is larger than 32bit
-	if err != nil {
-		log.Fatal(err)
-	}
+// 	val, err := strconv.ParseInt(in, 10, 32) //Convert string to int64, return error if the int is larger than 32bit
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
 
-	//create amount type
-	amount := &gRPC.Amount{
-		ClientName: *clientsName,
-		Value:      int32(val), //cast from int64 to int32
-	}
-	for _, s := range servers {
-		if conReady(s) { //If the connection to the server is ready
-			fmt.Println(s)
-			ack, err := s.Increment(ctx, amount) //Make gRPC call to server with amount, and recieve acknowlegdement back.
-			if err != nil {
-				log.Printf("Client %s: no response from the server, attempting to reconnect", *clientsName)
-				log.Println(err)
-			}
-			if ack.NewValue >= val {
-				fmt.Printf("Success, the new value is now %d\n", ack.NewValue)
-			} else {
+// 	//create amount type
+// 	amount := &gRPC.Amount{
+// 		ClientName: *clientsName,
+// 		Value:      int32(val), //cast from int64 to int32
+// 	}
+// 	for _, s := range servers {
+// 		if conReady(s) { //If the connection to the server is ready
+// 			fmt.Println(s)
+// 			ack, err := s.Increment(ctx, amount) //Make gRPC call to server with amount, and recieve acknowlegdement back.
+// 			if err != nil {
+// 				log.Printf("Client %s: no response from the server, attempting to reconnect", *clientsName)
+// 				log.Println(err)
+// 			}
+// 			if ack.NewValue >= val {
+// 				fmt.Printf("Success, the new value is now %d\n", ack.NewValue)
+// 			} else {
 
-				fmt.Println("Oh no something went wrong :(") //Hopefully this will never be reached
-			}
-		}
-	}
-}
+// 				fmt.Println("Oh no something went wrong :(") //Hopefully this will never be reached
+// 			}
+// 		}
+// 	}
+// }
 
 //Function which returns a true boolean if the connection to the server is ready, and false if it's not.
 func conReady(s gRPC.MessageServiceClient) bool {
@@ -129,6 +125,7 @@ func closeAll() {
 	}
 }
 
+//Setup method for the log.
 func setLog() {
 
 	f, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)

@@ -1,4 +1,4 @@
-module github.com/Trindkr/DistributedSystemsExam2022/proto
+module github.com/Trindkr/DistributedSystemsExam2022
 
 go 1.17
 
