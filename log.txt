@@ -1,0 +1,35 @@
+2022/01/05 11:44:39 client client1: Attempts to dial on port 5400
+2022/01/05 11:44:39 client client1: Attempts to dial on port 5401
+2022/01/05 11:44:39 client client1: Attempts to dial on port 5402
+2022/01/05 11:44:39 client client1: Attempts to dial on port 5403
+2022/01/05 11:44:40 Fail to Dial : context deadline exceeded
+2022/01/05 11:44:40 client client1: Attempts to dial on port 5404
+2022/01/05 11:44:40 Fail to Dial : context deadline exceeded
+2022/01/05 11:46:04 client client1: Attempts to dial on port 5400
+2022/01/05 11:46:04 client client1: Attempts to dial on port 5401
+2022/01/05 11:46:04 client client1: Attempts to dial on port 5402
+2022/01/05 11:46:04 client client1: Attempts to dial on port 5403
+2022/01/05 11:46:05 Fail to Dial : context deadline exceeded
+2022/01/05 11:46:05 client client1: Attempts to dial on port 5404
+2022/01/05 11:46:05 Fail to Dial : context deadline exceeded
+2022/01/05 11:46:12 client client2: Attempts to dial on port 5400
+2022/01/05 11:46:12 client client2: Attempts to dial on port 5401
+2022/01/05 11:46:12 client client2: Attempts to dial on port 5402
+2022/01/05 11:46:12 client client2: Attempts to dial on port 5403
+2022/01/05 11:46:13 Fail to Dial : context deadline exceeded
+2022/01/05 11:46:13 client client2: Attempts to dial on port 5404
+2022/01/05 11:46:13 Fail to Dial : context deadline exceeded
+2022/01/05 11:48:22 client client1: Attempts to dial on port 5400
+2022/01/05 11:48:22 client client1: Attempts to dial on port 5401
+2022/01/05 11:48:22 client client1: Attempts to dial on port 5402
+2022/01/05 11:48:22 client client1: Attempts to dial on port 5403
+2022/01/05 11:48:23 Fail to Dial : context deadline exceeded
+2022/01/05 11:48:23 client client1: Attempts to dial on port 5404
+2022/01/05 11:48:23 Fail to Dial : context deadline exceeded
+2022/01/05 11:49:17 client client2: Attempts to dial on port 5400
+2022/01/05 11:49:17 client client2: Attempts to dial on port 5401
+2022/01/05 11:49:17 client client2: Attempts to dial on port 5402
+2022/01/05 11:49:17 client client2: Attempts to dial on port 5403
+2022/01/05 11:49:18 Fail to Dial : context deadline exceeded
+2022/01/05 11:49:18 client client2: Attempts to dial on port 5404
+2022/01/05 11:49:18 Fail to Dial : context deadline exceeded
